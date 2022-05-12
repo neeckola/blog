@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,6 +30,10 @@ class Post extends Model
             $query->whereHas('author', fn($query) => $query->where('username', $author))
         );
 
+    }
+
+    public function comment() {
+        return $this->hasMany(Comment::class);
     }
 
     public function category() {
