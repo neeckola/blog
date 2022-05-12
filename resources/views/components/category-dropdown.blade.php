@@ -8,12 +8,12 @@
             <path fill="#222" d="M13.854 7.224l-3.847 3.856 3.847 3.856-1.184 1.184-5.04-5.04 5.04-5.04z"></path></g></svg>
         </button>
     </x-slot>
-<x-dropdown-item href="/" :active="request()->routeIs('home')">All Categories</x-dropdown-item>
+<x-dropdown-item href="/?{{ http_build_query(request()->except('category', 'page')) }}" :active="empty(request('category'))">All Categories</x-dropdown-item>
 
 @foreach($categories as $category)
 <x-dropdown-item 
-    href="/?category={{ $category->slug }}"
-    :active="request()->is('categories/' . $category->slug)"
+    href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category', 'page')) }}"
+    :active="request('category') === $category->slug"
     >{{ ucwords($category->name) }}</x-dropdown-item>
 @endforeach
 </x-dropdown>   
