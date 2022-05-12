@@ -16,4 +16,5 @@
     :active="request('category') === $category->slug"
     >{{ ucwords($category->name) }}</x-dropdown-item>
 @endforeach
+<div class="test"></div>
 </x-dropdown>   
